@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="EnergyHero" />
         <module name="KnowledgePoker" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="EnergyHero" target="1.8" />
       <module name="KnowledgePoker" target="1.8" />
     </bytecodeTargetLevel>
   </component>

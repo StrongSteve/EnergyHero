@@ -1,7 +1,6 @@
 package com.energyhero.controller;
 
 import com.energyhero.transfer.CurrentUser;
-import com.energyhero.service.question.QuestionService;
 import com.energyhero.service.user.UserService;
 import com.energyhero.transfer.ChangePasswordForm;
 import com.energyhero.transfer.UserCreateForm;
@@ -25,12 +24,10 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
-    private final QuestionService questionService;
 
     @Autowired
-    public UserController(UserService userService, QuestionService questionService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.questionService = questionService;
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -76,8 +73,6 @@ public class UserController {
 
     @RequestMapping("/user/profile")
     public String showProfile(Model model, @AuthenticationPrincipal CurrentUser user) {
-        model.addAttribute("numberOfQuestions", questionService.countQuestionsByUser(user));
-        model.addAttribute("overallAmountOfQuestions", questionService.countQuestions());
         return "userprofile";
     }
 
