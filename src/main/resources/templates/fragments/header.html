@@ -1,95 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="en">
 
 </head>
 <body>
 
-<div th:fragment="header">
+	<div th:fragment="header">
 
-    <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" th:href="@{/user/profile}">EnergyHero</a>
-                </div>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/user/profile}">EnergyHero</a>
+				</div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span
-                                    class="glyphicon glyphicon-education"></span> Platzhalter<b
-                                    class="caret"></b></a>
-                        </li>
-                        <li th:unless="${currentUserConnection != null}" class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                        class="glyphicon glyphicon-wrench"></span> Administration<b
-                                        class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                    <li sec:authorize="hasAuthority('ADMIN')"><a href="#" th:href="@{/users}">Benutzer
-                                        anzeigen</a></li>
-                                    </li>
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                    <li sec:authorize="hasAuthority('ADMIN')"><a href="#" th:href="@{/user/new}">Benutzer
-                                        anlegen</a></li>
-                                    </li>
-                                    <li class="menu-item dropdown dropdown-submenu">
-                                    <li><a href="#" th:href="@{/user/changePasswordForm}">Passwort ändern</a></li>
-                                    </li>
-                                </ul>
-                            </li>
-                        <li><a href="#" th:href="@{/about}"><span
-                                class="glyphicon glyphicon-question-sign"></span> About</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <div th:unless="${currentUserConnection == null}">
-                            Angemeldet via
-                            <a th:if="${currentUserConnection.providerId == 'linkedin'}"
-                               class="ml btn btn-social-icon btn-sm btn-linkedin"> <i
-                                    class="fa fa-linkedin"></i></a>
-                            <a th:if="${currentUserConnection.providerId == 'facebook'}"
-                               class="ml btn btn-social-icon btn-sm btn-facebook"> <i
-                                    class="fa fa-facebook"></i></a>
-                            <a th:if="${currentUserConnection.providerId == 'twitter'}"
-                               class="ml btn btn-social-icon btn-sm btn-twitter"> <i class="fa fa-twitter"></i></a>
-                            <a th:if="${currentUserConnection.providerId == 'live'}"
-                               class="ml btn btn-social-icon btn-sm btn-microsoft"> <i
-                                    class="fa fa-windows"></i></a>
-                            <a th:if="${currentUserConnection.providerId == 'github'}"
-                               class="ml btn btn-social-icon btn-sm btn-github"> <i class="fa fa-github"></i></a>
-                            <a th:if="${currentUserConnection.providerId == 'google'}"
-                               class="ml btn btn-social-icon btn-sm btn-google-plus"><i
-                                    class="fa fa-google-plus"></i></a>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><span class="glyphicon glyphicon-home"></span>
+								Haushalt<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="menu-item dropdown dropdown-submenu">
+								<li><a th:href="@{/about}"><span
+										class="glyphicon glyphicon-flash"></span> Strom</a></li></li>
+						<li class="menu-item dropdown dropdown-submenu">
+						<li><a th:href="@{/about}"><span
+								class="glyphicon glyphicon-fire"></span> Heizung</a></li>
+						</li>
+						<li class="menu-item dropdown dropdown-submenu">
+						<li><a th:href="@{/about}"><span
+								class="glyphicon glyphicon-tint"></span> Wasser</a></li>
+						</li>
+					</ul>
+					</li>
 
-                            als <span th:text="${currentUserConnection.displayName}"/>
-                            <img th:src="${currentUserConnection.imageUrl}" width="32" height="32"/>
-                            <form href="#" th:action="@{/logout}" method="post" style="display:inline">
-                                <input type="submit" value="" class="signOut" title="Abmelden" style="display:inline"/>
-                            </form>
-                        </div>
-                        <div th:unless="${currentUserConnection != null}">
-                            Angemeldet als <span th:inline="text">[[${#httpServletRequest.remoteUser}]]!</span>
-                            <form href="#" th:action="@{/logout}" method="post" style="display:inline">
-                                <input type="submit" value="" class="signOut" title="Abmelden" style="display:inline"/>
-                            </form>
-                        </div>
+					<li><a href="#" th:href="@{/about}"><span
+							class="glyphicon glyphicon-question-sign"></span> About</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<div th:unless="${currentUserConnection == null}">
+							Angemeldet via <a
+								th:if="${currentUserConnection.providerId == 'linkedin'}"
+								class="ml btn btn-social-icon btn-sm btn-linkedin"> <i
+								class="fa fa-linkedin"></i></a> <a
+								th:if="${currentUserConnection.providerId == 'facebook'}"
+								class="ml btn btn-social-icon btn-sm btn-facebook"> <i
+								class="fa fa-facebook"></i></a> <a
+								th:if="${currentUserConnection.providerId == 'twitter'}"
+								class="ml btn btn-social-icon btn-sm btn-twitter"> <i
+								class="fa fa-twitter"></i></a> <a
+								th:if="${currentUserConnection.providerId == 'live'}"
+								class="ml btn btn-social-icon btn-sm btn-microsoft"> <i
+								class="fa fa-windows"></i></a> <a
+								th:if="${currentUserConnection.providerId == 'github'}"
+								class="ml btn btn-social-icon btn-sm btn-github"> <i
+								class="fa fa-github"></i></a> <a
+								th:if="${currentUserConnection.providerId == 'google'}"
+								class="ml btn btn-social-icon btn-sm btn-google-plus"><i
+								class="fa fa-google-plus"></i></a> als <span
+								th:text="${currentUserConnection.displayName}" /> <img
+								th:src="${currentUserConnection.imageUrl}" width="32"
+								height="32" />
+							<form href="#" th:action="@{/logout}" method="post"
+								style="display: inline">
+								<input type="submit" value="" class="signOut" title="Abmelden"
+									style="display: inline" />
+							</form>
+						</div>
+						<div th:unless="${currentUserConnection != null}">
+							Angemeldet als <span th:inline="text">[[${#httpServletRequest.remoteUser}]]!</span>
+							<form href="#" th:action="@{/logout}" method="post"
+								style="display: inline">
+								<input type="submit" value="" class="signOut" title="Abmelden"
+									style="display: inline" />
+							</form>
+						</div>
 
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-    </nav>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
 
 
-</div>
+	</div>
 
 </body>
 </html>
