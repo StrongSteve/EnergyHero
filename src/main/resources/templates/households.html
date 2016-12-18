@@ -19,10 +19,14 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Name</th>
+                        <th>Wohnraum (m2)</th>
+                        <th>Anzahl der Bewohner</th>
                         <th>Löschen</th>
                     </tr>
                     <tr th:each="household : ${households}">
-                        <td th:text="${household.name}">Frage</td>
+                        <td th:text="${household.name}">Name</td>
+                        <td th:text="${household.size}">Quadratmeter</td>
+                        <td th:text="${household.numberOfInhabitants}">Bewohner</td>
                         <td><a th:href="${'/household/remove/' +household.id}">Löschen</a></td>
                     </tr>
                 </table>

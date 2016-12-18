@@ -43,6 +43,7 @@ public class HouseholdController {
 	@RequestMapping("/household/new")
     public String newHousehold(Model model, @AuthenticationPrincipal CurrentUser user){
         HouseholdCreateForm h = new HouseholdCreateForm();
+        h.setUserId(user.getId());
         model.addAttribute("household", h);
         return "householdform";
 	}	
@@ -55,7 +56,10 @@ public class HouseholdController {
 
         Household h = new Household();
         h.setName(household.getName());
-
+        h.setSize(household.getSize());
+        h.setNumberOfInhabitants(household.getNumberOfInhabitants());
+        h.setUserId(household.getUserId());
+        
         h = householdService.saveHousehold(h);
         return "redirect:/households/";
     }
