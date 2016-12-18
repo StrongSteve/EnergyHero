@@ -3,11 +3,13 @@ package com.energyhero.service.household;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.energyhero.domain.Household;
 import com.energyhero.repository.HouseholdRepository;
 import com.energyhero.transfer.CurrentUser;
 
+@Service
 public class HouseholdServiceImpl implements HouseholdService {
 
 	private HouseholdRepository householdRepository;
