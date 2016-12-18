@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>EnergyHero</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Haushaltsübersicht</div>
+            <div class="panel-body">
+                Übersicht über alle verfügbaren Haushalte
+            </div>
+            <a class="button" th:href="${'/household/new/'}">Neuen Haushalt anlegen</a>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Löschen</th>
+                    </tr>
+                    <tr th:each="household : ${households}">
+                        <td th:text="${household.name}">Frage</td>
+                        <td><a th:href="${'/household/remove/' +household.id}">Löschen</a></td>
+                    </tr>
+                </table>
+
+        </div>
+</div>
+
+</body>
+</html>
