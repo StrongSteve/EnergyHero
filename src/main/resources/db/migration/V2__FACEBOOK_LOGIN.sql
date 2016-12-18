@@ -13,8 +13,8 @@ create table UserConnection (userId varchar(255) not null,
 
 create unique index UserConnectionRank on UserConnection(userId, providerId, rank);
 
-ALTER TABLE player
+ALTER TABLE energyuser
   ADD socialusername VARCHAR(999);
 
-ALTER TABLE player
+ALTER TABLE energyuser
   ADD socialuser BOOLEAN DEFAULT FALSE ;

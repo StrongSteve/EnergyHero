@@ -6,12 +6,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "player")
+@Table(name = "energyuser")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq_gen")
-    @SequenceGenerator(name="player_seq_gen", sequenceName="seq_player")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "energyuser_seq_gen")
+    @SequenceGenerator(name="energyuser_seq_gen", sequenceName="seq_energyuser")
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
