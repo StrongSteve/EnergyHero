@@ -25,12 +25,12 @@
                     <label class="col-sm-2 control-label">Wohnraum (m2):</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" th:field="*{size}" th:errorclass="fieldError"/>
-                        <td class="sr-only" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title error message</td>
+                        <td class="sr-only" th:if="${#fields.hasErrors('size')}" th:errors="*{size}">Title error message</td>
                     </div>
                     <label class="col-sm-2 control-label">Anzahl der Bewohner:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" th:field="*{numberOfInhabitants}" th:errorclass="fieldError"/>
-                        <td class="sr-only" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title error message</td>
+                        <td class="sr-only" th:if="${#fields.hasErrors('numberOfInhabitants')}" th:errors="*{numberOfInhabitants}">Title error message</td>
                     </div>
                 </div>
                 <label class="col-sm-2 control-label"></label>

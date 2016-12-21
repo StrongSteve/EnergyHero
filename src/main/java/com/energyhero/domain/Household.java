@@ -25,6 +25,8 @@ public class Household {
 	@Column(name = "energyuserid")
     private Long userId;
 	
+	public Household() {}
+	
 	public Long getId() {
 		return id;
 	}
@@ -67,7 +69,7 @@ public class Household {
 
 	@Override
 	public String toString() {
-		return "User{" + "id=" + id + ", name='" + name.replaceFirst("@.*", "@***") + '}';
+		return "Household{" + "id=" + id + ", name='" + name.replaceFirst("@.*", "@***") + '}';
 	}
 
 	@Override

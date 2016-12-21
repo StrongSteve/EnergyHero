@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>EnergyHero</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Messungsübersicht</div>
+            <div class="panel-body">
+                Übersicht über alle verfügbaren Messungen
+            </div>
+            <a class="button" th:href="${'/measurement/new/'}">Neue Messung anlegen</a>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Verbraucher</th>
+                        <th>Wert</th>
+                        <th>Einheit</th>
+                        <th>Löschen</th>
+                    </tr>
+                    <tr th:each="measurement : ${measurements}">
+                        <td th:text="${measurement.creationTimestamp}">Datum</td>
+                        <td th:text="${measurement.consumer}">Verbraucher</td>
+                        <td th:text="${measurement.value}">Wert</td>
+                        <td th:text="${measurement.unit}">Einheit</td>
+                        <td><a th:href="${'/measurement/remove/' +measurement.id}">Löschen</a></td>
+                    </tr>
+                </table>
+
+        </div>
+</div>
+
+</body>
+</html>
