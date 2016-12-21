@@ -13,7 +13,7 @@ public class MeasurementCreateForm {
 
 	private Double value;
 
-	private Date creationTimestamp;
+	private Date measureTimestamp;
 
 	private Long householdId;
 
@@ -51,20 +51,20 @@ public class MeasurementCreateForm {
 		this.householdId = householdId;
 	}
 
-	public Date getCreationTimestamp() {
-		return creationTimestamp;
-	}
-
-	public void setCreationTimestamp(Date creationTimestamp) {
-		this.creationTimestamp = creationTimestamp;
-	}
-
 	public Long getUserId() {
 		return userId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public Date getMeasureTimestamp() {
+		return measureTimestamp;
+	}
+
+	public void setMeasureTimestamp(Date measureTimestamp) {
+		this.measureTimestamp = measureTimestamp;
 	}
 
 }

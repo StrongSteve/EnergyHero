@@ -25,7 +25,7 @@
                         <th>Löschen</th>
                     </tr>
                     <tr th:each="measurement : ${measurements}">
-                        <td th:text="${measurement.creationTimestamp}">Datum</td>
+                        <td th:text="${measurement.measureTimestamp}">Datum</td>
                         <td th:text="${measurement.consumer}">Verbraucher</td>
                         <td th:text="${measurement.value}">Wert</td>
                         <td th:text="${measurement.unit}">Einheit</td>

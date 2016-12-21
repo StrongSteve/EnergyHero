@@ -21,8 +21,8 @@ public class Measurement {
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 
-	@Column(name = "creationtimestamp")
-	private Date creationTimestamp;
+	@Column(name = "measuretimestamp")
+	private Date measureTimestamp;
 
 	@Column(name = "consumer", nullable = false)
 	private Consumer consumer;
@@ -35,28 +35,19 @@ public class Measurement {
 
 	@Column(name = "householdid")
 	private Long householdId;
-	
+
 	@Column(name = "userid")
-    private Long userId;
+	private Long userId;
 
 	public Measurement() {
-        this.creationTimestamp = new Date();
-    }
-	
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Date getCreationTimestamp() {
-		return creationTimestamp;
-	}
-
-	public void setCreationTimeStamp(Date creationTimestamp) {
-		this.creationTimestamp = creationTimestamp;
 	}
 
 	public Consumer getConsumer() {
@@ -90,7 +81,7 @@ public class Measurement {
 	public void setHouseholdId(Long householdId) {
 		this.householdId = householdId;
 	}
-	
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -99,8 +90,12 @@ public class Measurement {
 		this.userId = userId;
 	}
 
-	public void setCreationTimestamp(Date creationTimestamp) {
-		this.creationTimestamp = creationTimestamp;
+	public Date getMeasureTimestamp() {
+		return measureTimestamp;
+	}
+
+	public void setMeasureTimestamp(Date measureTimestamp) {
+		this.measureTimestamp = measureTimestamp;
 	}
 
 	@Override

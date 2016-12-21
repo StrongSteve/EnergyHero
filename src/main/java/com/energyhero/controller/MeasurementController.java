@@ -1,5 +1,7 @@
 package com.energyhero.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,7 @@ public class MeasurementController {
         }
 
         Measurement m = new Measurement();
+        m.setMeasureTimestamp(measurement.getMeasureTimestamp());
         m.setConsumer(measurement.getConsumer());
         m.setUnit(measurement.getUnit());
         m.setValue(measurement.getValue());

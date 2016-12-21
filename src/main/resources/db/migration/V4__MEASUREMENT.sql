@@ -4,7 +4,7 @@ CREATE TABLE measurement (
   consumer VARCHAR(999) NOT NULL,
   unit VARCHAR(999) NOT NULL,
   value NUMERIC NOT NULL,
-  creationtimestamp TIMESTAMP NOT NULL,
+  measuretimestamp TIMESTAMP NOT NULL,
   userid INT
 );
 
