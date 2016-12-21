@@ -2,6 +2,8 @@ package com.energyhero.transfer;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.energyhero.domain.Consumer;
@@ -13,6 +15,7 @@ public class MeasurementCreateForm {
 
 	private Unit unit;
 
+	@NotNull
 	private Double value;
 
 	@DateTimeFormat(pattern = "yyyy-mm-dd")

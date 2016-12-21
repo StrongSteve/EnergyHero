@@ -51,12 +51,19 @@ public class MeasurementController {
 	
 	@RequestMapping(value = "measurement", method = RequestMethod.POST)
     public String saveMeasurement(@Valid @ModelAttribute(value = "measurement") MeasurementCreateForm measurement, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()) {
+        Date d = measurement.getMeasureTimestamp();
+		if (measurement.getMeasureTimestamp() == null) {
+        	d = new Date();
+        } else {
+        	d = measurement.getMeasureTimestamp();
+        }
+		
+		if (bindingResult.hasErrors()) {
             return "measurementform";
         }
 
         Measurement m = new Measurement();
-        m.setMeasureTimestamp(measurement.getMeasureTimestamp());
+        m.setMeasureTimestamp(d);
         m.setConsumer(measurement.getConsumer());
         m.setUnit(measurement.getUnit());
         m.setValue(measurement.getValue());
