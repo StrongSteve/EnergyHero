@@ -1,11 +1,13 @@
 package com.energyhero.service.measurement;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.energyhero.domain.Measurement;
+import com.energyhero.domain.Role;
 import com.energyhero.repository.MeasurementRepository;
 import com.energyhero.transfer.CurrentUser;
 
@@ -21,14 +23,11 @@ public class MeasurementServiceImpl implements MeasurementService {
 
 	@Override
 	public List<Measurement> getAllAvailableMeasurements(CurrentUser user) {
-		// if (Objects.equals(user.getRole(), Role.ADMIN)) {
-		return measurementRepository.findAll();
-		// }
-	}
-
-	@Override
-	public List<Measurement> getAllAvailableMeasurements() {
-		return measurementRepository.findAll();
+		if (Objects.equals(user.getRole(), Role.ADMIN)) {
+			return measurementRepository.findAll();
+		} else {
+			return measurementRepository.findByUserId(user.getId());
+		}
 	}
 
 	@Override

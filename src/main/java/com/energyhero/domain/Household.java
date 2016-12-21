@@ -22,7 +22,7 @@ public class Household {
 	@Column(name = "number_inhabitants", nullable = false, unique = true)
 	private int numberOfInhabitants;
 
-	@Column(name = "energyuserid")
+	@Column(name = "userid")
     private Long userId;
 	
 	public Household() {}

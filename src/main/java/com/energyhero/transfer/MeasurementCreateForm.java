@@ -2,8 +2,6 @@ package com.energyhero.transfer;
 
 import java.util.Date;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.energyhero.domain.Consumer;
 import com.energyhero.domain.Unit;
 
@@ -18,6 +16,8 @@ public class MeasurementCreateForm {
 	private Date creationTimestamp;
 
 	private Long householdId;
+
+	private Long userId;
 
 	public Consumer getConsumer() {
 		return consumer;
@@ -57,6 +57,14 @@ public class MeasurementCreateForm {
 
 	public void setCreationTimestamp(Date creationTimestamp) {
 		this.creationTimestamp = creationTimestamp;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

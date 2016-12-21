@@ -42,6 +42,7 @@ public class MeasurementController {
 	@RequestMapping("/measurement/new")
     public String newMeasurement(Model model, @AuthenticationPrincipal CurrentUser user){
 		MeasurementCreateForm m = new MeasurementCreateForm();
+		m.setUserId(user.getId());
         model.addAttribute("measurement", m);
         return "measurementform";
 	}	
@@ -57,6 +58,7 @@ public class MeasurementController {
         m.setUnit(measurement.getUnit());
         m.setValue(measurement.getValue());
         m.setHouseholdId(measurement.getHouseholdId());
+        m.setUserId(measurement.getUserId());
 
         m = measurementService.saveMeasurement(m);
         return "redirect:/measurements/";

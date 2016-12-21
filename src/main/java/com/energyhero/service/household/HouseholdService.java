@@ -9,7 +9,7 @@ public interface HouseholdService {
 
 	List<Household> getAllAvailableHouseholds(CurrentUser user);
 
-	List<Household> getAllAvailableHouseholds();
+//	List<Household> getAllAvailableHouseholds();
 	
 	Household getHouseholdById(Long id);
 

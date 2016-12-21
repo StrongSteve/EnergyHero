@@ -35,6 +35,9 @@ public class Measurement {
 
 	@Column(name = "householdid")
 	private Long householdId;
+	
+	@Column(name = "userid")
+    private Long userId;
 
 	public Measurement() {
         this.creationTimestamp = new Date();
@@ -88,6 +91,18 @@ public class Measurement {
 		this.householdId = householdId;
 	}
 	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public void setCreationTimestamp(Date creationTimestamp) {
+		this.creationTimestamp = creationTimestamp;
+	}
+
 	@Override
 	public String toString() {
 		return "Measurement" + "id=" + id + '}';

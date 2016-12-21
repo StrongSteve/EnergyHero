@@ -1,11 +1,13 @@
 package com.energyhero.service.household;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.energyhero.domain.Household;
+import com.energyhero.domain.Role;
 import com.energyhero.repository.HouseholdRepository;
 import com.energyhero.transfer.CurrentUser;
 
@@ -21,9 +23,11 @@ public class HouseholdServiceImpl implements HouseholdService {
 
 	@Override
 	public List<Household> getAllAvailableHouseholds(CurrentUser user) {
-		// if (Objects.equals(user.getRole(), Role.ADMIN)) {
-		return householdRepository.findAll();
-		// }
+		if (Objects.equals(user.getRole(), Role.ADMIN)) {
+			return householdRepository.findAll();
+		} else {
+			return householdRepository.findByUserId(user.getId());
+		}
 	}
 
 	@Override
@@ -39,11 +43,6 @@ public class HouseholdServiceImpl implements HouseholdService {
 	@Override
 	public void deleteHousehold(Long id) {
 		householdRepository.delete(id);
-	}
-
-	@Override
-	public List<Household> getAllAvailableHouseholds() {
-		return householdRepository.findAll();
 	}
 
 }

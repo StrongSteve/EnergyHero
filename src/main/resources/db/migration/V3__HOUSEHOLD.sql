@@ -3,7 +3,7 @@ CREATE TABLE household (
   name VARCHAR(999) NOT NULL,
   size INT NOT NULL,
   number_inhabitants INT NOT NULL,
-  energyuserid INT
+  userid INT
 );
 
 CREATE SEQUENCE seq_household START 1;

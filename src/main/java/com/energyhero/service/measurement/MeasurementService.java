@@ -9,8 +9,6 @@ public interface MeasurementService {
 
 	List<Measurement> getAllAvailableMeasurements(CurrentUser user);
 
-	List<Measurement> getAllAvailableMeasurements();
-
 	Measurement getMeasurementById(Long id);
 
 	Measurement saveMeasurement(Measurement measurement);
