@@ -3,13 +3,7 @@ package com.energyhero.domain;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "measurement")
@@ -33,10 +27,11 @@ public class Measurement {
 	@Column(name = "value", nullable = false)
 	private Double value;
 
-	@Column(name = "householdid")
-	private Long householdId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "householdid")
+	private Household household;
 
-	@Column(name = "userid")
+	@Column(name = "userid", nullable = false)
 	private Long userId;
 
 	public Measurement() {
@@ -74,14 +69,6 @@ public class Measurement {
 		this.value = value;
 	}
 
-	public Long getHouseholdId() {
-		return householdId;
-	}
-
-	public void setHouseholdId(Long householdId) {
-		this.householdId = householdId;
-	}
-
 	public Long getUserId() {
 		return userId;
 	}
@@ -96,6 +83,14 @@ public class Measurement {
 
 	public void setMeasureTimestamp(Date measureTimestamp) {
 		this.measureTimestamp = measureTimestamp;
+	}
+
+	public Household getHousehold() {
+		return household;
+	}
+
+	public void setHousehold(Household household) {
+		this.household = household;
 	}
 
 	@Override

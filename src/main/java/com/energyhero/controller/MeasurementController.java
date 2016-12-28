@@ -1,9 +1,12 @@
 package com.energyhero.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.validation.Valid;
 
+import com.energyhero.domain.Household;
+import com.energyhero.service.household.HouseholdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,10 +26,12 @@ import com.energyhero.transfer.MeasurementCreateForm;
 public class MeasurementController {
 
 	private MeasurementService measurementService;
+    private HouseholdService householdService;
 
 	@Autowired
-	public void setMeasurementService(MeasurementService measurementService) {
+	public void setMeasurementService(MeasurementService measurementService, HouseholdService householdService) {
 		this.measurementService = measurementService;
+        this.householdService = householdService;
 	}
 	
 	@RequestMapping(value = "/measurements", method = RequestMethod.GET)
@@ -43,14 +48,17 @@ public class MeasurementController {
 	
 	@RequestMapping("/measurement/new")
     public String newMeasurement(Model model, @AuthenticationPrincipal CurrentUser user){
-		MeasurementCreateForm m = new MeasurementCreateForm();
+        MeasurementCreateForm m = new MeasurementCreateForm();
 		m.setUserId(user.getId());
         model.addAttribute("measurement", m);
+
+        model.addAttribute("households", householdService.getAllAvailableHouseholds(user));
+
         return "measurementform";
 	}	
 	
 	@RequestMapping(value = "measurement", method = RequestMethod.POST)
-    public String saveMeasurement(@Valid @ModelAttribute(value = "measurement") MeasurementCreateForm measurement, BindingResult bindingResult, Model model){
+    public String saveMeasurement(@Valid @ModelAttribute(value = "measurement") MeasurementCreateForm measurement, BindingResult bindingResult, Model model, @AuthenticationPrincipal CurrentUser user){
         Date d = measurement.getMeasureTimestamp();
 		if (measurement.getMeasureTimestamp() == null) {
         	d = new Date();
@@ -59,6 +67,7 @@ public class MeasurementController {
         }
 		
 		if (bindingResult.hasErrors()) {
+            model.addAttribute("households", householdService.getAllAvailableHouseholds(user));
             return "measurementform";
         }
 
@@ -67,7 +76,9 @@ public class MeasurementController {
         m.setConsumer(measurement.getConsumer());
         m.setUnit(measurement.getUnit());
         m.setValue(measurement.getValue());
-        m.setHouseholdId(measurement.getHouseholdId());
+        Household h = new Household();
+        h.setId(measurement.getHouseholdId());
+        m.setHousehold(h);
         m.setUserId(measurement.getUserId());
 
         m = measurementService.saveMeasurement(m);

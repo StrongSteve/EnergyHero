@@ -21,6 +21,7 @@ public class MeasurementCreateForm {
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date measureTimestamp;
 
+	@NotNull
 	private Long householdId;
 
 	private Long userId;

@@ -19,6 +19,7 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Datum</th>
+                        <th>Haushalt</th>
                         <th>Verbraucher</th>
                         <th>Wert</th>
                         <th>Einheit</th>
@@ -26,6 +27,8 @@
                     </tr>
                     <tr th:each="measurement : ${measurements}">
                         <td th:text="${measurement.measureTimestamp}">Datum</td>
+                        <!--/*@thymesVar id="household" type=""*/-->
+                        <td th:text="${measurement.household.name}">Haushalt</td>
                         <td th:text="${measurement.consumer}">Verbraucher</td>
                         <td th:text="${measurement.value}">Wert</td>
                         <td th:text="${measurement.unit}">Einheit</td>
